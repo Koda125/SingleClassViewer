@@ -1,0 +1,438 @@
+.dice-roller {
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 0;
+}
+
+.dice-roller h3 {
+  margin: 0 0 16px 0;
+  color: #1a1a1a;
+  font-size: 18px;
+  text-align: center;
+  border-bottom: 2px solid #667eea;
+  padding-bottom: 8px;
+}
+
+.dice-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.control-group label {
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+}
+
+.quantity-btn {
+  width: 32px;
+  height: 32px;
+  border: 2px solid #667eea;
+  background: white;
+  color: #667eea;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.quantity-btn:hover:not(:disabled) {
+  background: #667eea;
+  color: white;
+}
+
+.quantity-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.quantity-display {
+  font-size: 18px;
+  font-weight: bold;
+  color: #1a1a1a;
+  min-width: 40px;
+  text-align: center;
+}
+
+.modifier-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+}
+
+.modifier-btn {
+  width: 32px;
+  height: 32px;
+  border: 2px solid #e74c3c;
+  background: white;
+  color: #e74c3c;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.modifier-btn:hover {
+  background: #e74c3c;
+  color: white;
+}
+
+.modifier-display {
+  font-size: 18px;
+  font-weight: bold;
+  color: #e74c3c;
+  min-width: 50px;
+  text-align: center;
+}
+
+.die-type-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+  gap: 8px;
+}
+
+.die-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 8px;
+  border: 2px solid #e0e0e0;
+  background: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 60px;
+}
+
+.die-btn:hover {
+  border-color: #667eea;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+.die-btn.active {
+  border-color: #667eea;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  animation: fadeInScale 0.3s ease-out;
+}
+
+.die-icon {
+  font-size: 20px;
+}
+
+.die-label {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.roll-btn {
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.roll-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
+
+.roll-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.roll-btn.rolling {
+  animation: rollPulse 0.5s ease-in-out infinite alternate, diceSpin 1.5s linear infinite;
+}
+
+@keyframes rollPulse {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes diceSpin {
+  0% {
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    opacity: 0.5;
+  }
+  50% {
+    transform: rotateX(360deg) rotateY(360deg) rotateZ(180deg);
+  }
+  100% {
+    transform: rotateX(720deg) rotateY(720deg) rotateZ(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes rollBounce {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInScale {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.dice-results {
+  border-top: 1px solid #e8e8e8;
+  padding-top: 20px;
+  margin-top: 20px;
+  animation: fadeInScale 0.5s ease-out;
+}
+
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  animation: slideInFromLeft 0.6s ease-out;
+}
+
+.results-header h4 {
+  margin: 0;
+  color: #1a1a1a;
+  font-size: 16px;
+}
+
+.total-display {
+  font-size: 14px;
+  color: #666;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+.total-value {
+  font-size: 18px;
+  font-weight: bold;
+  color: #667eea;
+  display: inline-block;
+  animation: diceSpin 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.individual-rolls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.roll-result {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #f5f5f5;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  animation: rollBounce 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.roll-result:nth-child(1) { animation-delay: 0s; }
+.roll-result:nth-child(2) { animation-delay: 0.1s; }
+.roll-result:nth-child(3) { animation-delay: 0.2s; }
+.roll-result:nth-child(4) { animation-delay: 0.3s; }
+.roll-result:nth-child(5) { animation-delay: 0.4s; }
+.roll-result:nth-child(n+6) { animation-delay: 0.5s; }
+
+.roll-number {
+  font-size: 16px;
+  font-weight: bold;
+  color: #1a1a1a;
+  display: inline-block;
+  animation: diceSpin 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.roll-label {
+  font-size: 12px;
+  color: #666;
+  font-weight: 500;
+}
+
+.roll-summary {
+  background: #f9f9f9;
+  padding: 12px;
+  border-radius: 6px;
+  border-left: 4px solid #667eea;
+  animation: slideInFromLeft 0.7s ease-out;
+}
+
+.summary-text {
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+}
+
+.recent-rolls {
+  border-top: 2px solid #e8e8e8;
+  padding-top: 16px;
+  margin-top: 16px;
+  animation: fadeInScale 0.5s ease-out;
+}
+
+.recent-rolls h4 {
+  margin: 0 0 12px 0;
+  color: #1a1a1a;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.recent-rolls-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.recent-roll-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  background: #f0f4ff;
+  border-radius: 6px;
+  border-left: 3px solid #667eea;
+  animation: slideInFromLeft 0.5s ease-out;
+  transition: all 0.2s ease;
+  cursor: default;
+}
+
+.recent-roll-item:hover {
+  background: #e8ecff;
+  transform: translateX(4px);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.15);
+}
+
+.recent-roll-item:nth-child(1) { animation-delay: 0s; }
+.recent-roll-item:nth-child(2) { animation-delay: 0.1s; }
+.recent-roll-item:nth-child(3) { animation-delay: 0.2s; }
+
+.recent-roll-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.recent-roll-label {
+  font-family: 'Courier New', monospace;
+  font-weight: 600;
+  color: #667eea;
+  font-size: 13px;
+}
+
+.recent-roll-breakdown {
+  font-family: 'Courier New', monospace;
+  font-weight: 500;
+  color: #555;
+  font-size: 12px;
+}
+
+.recent-roll-total {
+  font-weight: bold;
+  color: #2ecc71;
+  font-size: 16px;
+  white-space: nowrap;
+  min-width: 40px;
+  text-align: right;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .dice-controls {
+    gap: 16px;
+  }
+
+  .die-type-buttons {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .quantity-controls {
+    gap: 8px;
+  }
+
+  .results-header {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+}
