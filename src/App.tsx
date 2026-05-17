@@ -7,128 +7,128 @@ import './App.css';
 const sampleClass: DndClass = {
   id: 'kineticist_001',
   name: 'Kineticist',
-  description: 'A conduit of elemental energy, shaping fire, air, water, earth, shadow, radiance, and more into kinetic blasts and infusions.',
+  description: 'A conduit of elemental energy, shaping fire, air, water, earth, shadow, radiance, and nature into kinetic blasts and infusions.',
   hitDice: 8,
   primaryAttribute: 'constitution',
   attributes: {
-    strength: 10,
-    dexterity: 14,
-    constitution: 16,
-    intelligence: 12,
-    wisdom: 12,
-    charisma: 8,
+    strength: 9,
+    dexterity: 18,
+    constitution: 20,
+    intelligence: 11,
+    wisdom: 15,
+    charisma: 11,
   },
   abilities: [
     {
       name: 'Subclass Choice',
-      description: 'Choose a subclass: Shadow Weaver, Light Bearer, or Nature\'s Wrath. Your subclass adds an elemental option and grants later features.',
+      description: 'Choose a subclass: Shadow Weaver, Light Bearer, or Nature\'s Wrath. Shadow Weaver is selected by default, while Light Bearer and Nature\'s Wrath provide radiant or primal alternatives.',
       minLevel: 1,
     },
     {
       name: 'Elemental Gate',
-      description: 'Choose one primary element from your available list. This choice is permanent and determines the damage types available to your blasts.',
+      description: 'Choose one primary element from your available list. This choice is permanent and determines the damage types and special effects available to your Kinetic Blast.',
       minLevel: 1,
     },
     {
       name: 'Kinetic Blast',
-      description: 'Make a ranged or melee kinetic impulse attack using your proficiency bonus plus Constitution modifier. Damage improves as you deepen mastery.',
+      description: 'Make a ranged or melee kinetic impulse attack using your proficiency bonus plus Constitution modifier. Your Kinetic Blast deals increased damage as you level up and can be modified by infusions and wild talents.',
       minLevel: 1,
     },
     {
       name: 'Elementalism',
-      description: 'Cast the elementalism cantrip without somatic components while you have at least one hand free.',
+      description: 'You can cast the Elementalism cantrip without somatic components while you have at least one hand free, making it easier to channel elemental energy quickly.',
       minLevel: 1,
     },
     {
       name: 'Unarmored Defense',
-      description: 'While not wearing armor and not using a shield, your AC is 10 + Dexterity modifier + Constitution modifier.',
+      description: 'While not wearing armor and not using a shield, your AC is 10 + Dexterity modifier + Constitution modifier, reflecting the balance of mobility and resilience in your elemental form.',
       minLevel: 1,
     },
     {
       name: 'Wild Talents',
-      description: 'Channel extra effects into your Kinetic Blast by accepting burn, unlocking infusions and wild talents.',
+      description: 'Channel extra effects into your Kinetic Blast by accepting burn, unlocking infusions and wild talents that add blast damage, saves, control, or utility.',
       minLevel: 2,
     },
     {
       name: 'Burn',
-      description: 'Accept burn points up to the higher of your Constitution modifier or proficiency bonus. Burn reduces your maximum hit points until your next long rest.',
+      description: 'Accept burn points equal to the higher of your Constitution modifier or proficiency bonus. Burn represents the strain of pushing elemental energy through your body and temporarily reduces your hit point maximum.',
       minLevel: 2,
     },
     {
       name: 'Burn Reduction (Channeling)',
-      description: 'Reduce burn cost using bonus actions or actions, at the cost of movement or action economy.',
+      description: 'Learn techniques to reduce the burn cost of certain abilities by using actions or movement in exchange for less strain.',
       minLevel: 2,
     },
     {
       name: 'Gate Expansion',
-      description: 'At 3rd, 7th, 10th, and 15th levels select either Deepen Mastery or Elemental Reach for your gates.',
+      description: 'At 3rd, 7th, 10th, and 15th levels, choose either Deepen Mastery or Elemental Reach for your gates, improving damage or range and unlocking additional effects.',
       minLevel: 3,
     },
     {
       name: 'Kinetic Surge',
-      description: 'When you take the Attack action, make two Kinetic Blasts instead of one.',
+      description: 'When you take the Attack action, make two Kinetic Blasts instead of one, allowing you to apply more infusions or strike multiple foes.',
       minLevel: 5,
     },
     {
       name: 'Kinetic Transcendence',
-      description: 'Your Kinetic Blast and damaging elementalism attacks count as magical for overcoming resistance and immunity.',
+      description: 'Your Kinetic Blast and damaging elementalism attacks count as magical for overcoming resistances and immunities, making your energy reliable against hardened foes.',
       minLevel: 6,
     },
     {
       name: 'Kinetic Durability',
-      description: 'When you accept burn as part of an attack, gain temporary hit points equal to your Constitution modifier.',
+      description: 'When you accept burn as part of an attack, you gain temporary hit points equal to your Constitution modifier, reflecting the protective power of your kinetic core.',
       minLevel: 6,
     },
     {
       name: 'Empower Infusion',
-      description: 'Once per turn, roll damage twice and use the higher result for a Kinetic Blast. Recharge by accepting 2 burn points.',
+      description: 'Once per turn, roll damage twice and use the higher result for a Kinetic Blast. Recharge this ability by accepting 2 burn points, giving you a strong burst option.',
       minLevel: 7,
     },
     {
       name: 'Kinetic Momentum',
-      description: 'When you accept burn on an attack, gain a short-duration movement bonus, jump boost, or movement through creatures.',
+      description: 'When you accept burn on an attack, gain a short-duration movement bonus. This can let you shift, jump farther, or slip through creatures as your kinetic energy surges.',
       minLevel: 9,
     },
     {
       name: 'Quicken Infusion',
-      description: 'Use Kinetic Blast as a bonus action once per turn for half damage and recharge it by accepting 1 burn point.',
+      description: 'Use Kinetic Blast as a bonus action once per turn for half damage, then recharge it by accepting 1 burn point. This grants tactical speed at the cost of extra strain.',
       minLevel: 10,
     },
     {
       name: 'Overcharge',
-      description: 'Overcharge Kinetic Blast for advantage on the attack roll, maximized damage, and one extra wild talent with no burn cost.',
+      description: 'Overcharge Kinetic Blast for advantage on the attack roll, maximized damage, and one extra wild talent without paying its burn cost for that attack.',
       minLevel: 11,
     },
     {
       name: 'Elemental Overflow',
-      description: 'While you have burn, gain increasing bonuses to attacks, damage, AC, saves, and elemental resistances.',
+      description: 'While you have burn, gain increasing bonuses to attack rolls, damage, AC, saving throws, and elemental resistances. Your elemental power grows stronger as your strain increases.',
       minLevel: 13,
     },
     {
       name: 'Internal Buffer',
-      description: 'Spend buffer points to avoid burn on impulses and regain a buffer point once per short rest.',
+      description: 'You can spend buffer points to avoid burn on certain impulses and regain one buffer point once per short rest, giving you greater control over how much strain you accept.',
       minLevel: 14,
     },
     {
       name: 'Composite Mastery',
-      description: 'Reduce the burn cost of combined wild talents and increase your maximum burn points per attack.',
+      description: 'Reduce the burn cost of combined wild talents and increase your maximum burn points per attack, allowing you to stack more effects safely.',
       minLevel: 17,
     },
     {
       name: 'Kinetic Apotheosis',
-      description: 'Enter a 1-minute apotheosis that automatically empowers and quickens blasts, grants resistances, and lets Overcharge ignore backlash.',
+      description: 'Enter a 1-minute apotheosis that automatically empowers and quickens your blasts, grants resistances, and lets Overcharge ignore backlash, transforming you into a true elemental focus.',
       minLevel: 18,
     },
     {
       name: 'True Gate',
-      description: 'Gain permanent elemental resistances, more burn capacity, and once per long rest use Overcharge without burn cost or backlash.',
+      description: 'Gain permanent elemental resistances, additional burn capacity, and once per long rest use Overcharge without burn cost or backlash.',
       minLevel: 20,
     },
   ],
   infusions: [
     {
       name: 'Extended Range',
-      description: 'Your kinetic blast range increases to 120 feet.',
+      description: 'Your Kinetic Blast range increases to 120 feet, letting you strike distant enemies from safety.',
       element: 'universal',
       blastType: 'Any',
       burnCost: 1,
@@ -136,7 +136,7 @@ const sampleClass: DndClass = {
     },
     {
       name: 'Kinetic Blade',
-      description: 'Form a light or one-handed weapon of pure energy that deals your blast damage die plus Constitution modifier.',
+      description: 'Form a light or one-handed weapon of pure energy. The weapon deals your Kinetic Blast damage die plus Constitution modifier and counts as a Kinetic Blast effect for other abilities.',
       element: 'universal',
       blastType: 'Any',
       burnCost: 1,
@@ -144,7 +144,7 @@ const sampleClass: DndClass = {
     },
     {
       name: 'Exploding Arrows',
-      description: 'Enhance a ranged weapon attack so the projectile deals extra elemental damage and explodes to nearby creatures.',
+      description: 'When you make a ranged attack with a Kinetic Blast or blast-enhanced projectile, the impact explodes. The target takes full damage and adjacent creatures take half as much.',
       element: 'universal',
       blastType: 'Any',
       burnCost: 1,
@@ -152,7 +152,7 @@ const sampleClass: DndClass = {
     },
     {
       name: 'Bowling Infusion',
-      description: 'Your blast knocks a foe prone on a failed Strength save.',
+      description: 'Your blast strikes a creature and forces a failed Strength save to knock it prone and push it 5 feet away from you.',
       element: 'earth',
       blastType: 'Earth, Holyground, Magma, Metal, Mud',
       burnCost: 1,
@@ -160,7 +160,7 @@ const sampleClass: DndClass = {
     },
     {
       name: 'Burning Infusion',
-      description: 'Ignite a target; it takes your kinetic blast damage at the end of its turn until the fire is extinguished.',
+      description: 'Your blast sets the target on fire. The target takes your normal blast damage, and on a failed Reflex save it suffers ongoing fire damage equal to your Constitution modifier until the fire is extinguished.',
       element: 'fire',
       blastType: 'Blue flame, Fire, Green flame, Magma, Plasma',
       burnCost: 1,
@@ -168,7 +168,7 @@ const sampleClass: DndClass = {
     },
     {
       name: 'Chilling Infusion',
-      description: 'A failed Constitution save causes the target to become staggered.',
+      description: 'Your blast is a surge of frost. A failed Fortitude save slows the target and reduces its movement until the end of your next turn.',
       element: 'water',
       blastType: 'Cold, Blizzard',
       burnCost: 1,
@@ -176,7 +176,7 @@ const sampleClass: DndClass = {
     },
     {
       name: 'Dazzling Infusion',
-      description: 'A failed Wisdom save blinds the target until the end of its next turn.',
+      description: 'A flash of light erupts from your blast. On a failed Will save, the target is dazzled until the end of its next turn.',
       element: 'fire',
       blastType: 'Blue flame, Fire, Green flame, Plasma, Radiant',
       burnCost: 1,
@@ -184,7 +184,7 @@ const sampleClass: DndClass = {
     },
     {
       name: 'Dampening Infusion',
-      description: 'Your blast blinds a target on a failed Wisdom save.',
+      description: 'Your blast cloaks the target in shadow. A failed Will save causes the creature to be blinded until the end of its next turn.',
       element: 'shadow',
       blastType: 'Green flame, Shadow',
       burnCost: 1,
@@ -192,7 +192,7 @@ const sampleClass: DndClass = {
     },
     {
       name: 'Magnetic Infusion',
-      description: 'The next weapon attack against the target has advantage.',
+      description: 'Your blast distorts metal around the target. On a failed Reflex save, the next attack against the creature before the end of your next turn has advantage.',
       element: 'lightning',
       blastType: 'Electric, Metal, Plasma',
       burnCost: 1,
@@ -200,7 +200,7 @@ const sampleClass: DndClass = {
     },
     {
       name: 'Pushing Infusion',
-      description: 'A failed save pushes the target 10 feet away from you.',
+      description: 'Your blast repels the target. A failed Strength save pushes the creature 10 feet away from you.',
       element: 'thunder',
       blastType: 'Air',
       burnCost: 1,
@@ -208,7 +208,7 @@ const sampleClass: DndClass = {
     },
     {
       name: 'Pulling Infusion',
-      description: 'A failed Strength save pulls the target 10 feet closer to you.',
+      description: 'Your blast draws a target closer. A failed Strength save pulls the creature 10 feet toward you.',
       element: 'shadow',
       blastType: 'Shadow',
       burnCost: 1,
@@ -216,7 +216,7 @@ const sampleClass: DndClass = {
     },
     {
       name: 'Slick Infusion',
-      description: 'Create slippery difficult terrain that forces Dexterity checks or causes creatures to fall prone.',
+      description: 'Your blast creates slippery terrain. Creatures that enter or move through the area must succeed on a Reflex save or fall prone.',
       element: 'water',
       blastType: 'Water, Ice',
       burnCost: 1,
@@ -224,7 +224,7 @@ const sampleClass: DndClass = {
     },
     {
       name: 'Thundering Infusion',
-      description: 'A failed Wisdom save deafens creatures until the end of their next turn.',
+      description: 'Your blast explodes with thunder. A failed Fortitude save deafens the target until the end of its next turn.',
       element: 'air',
       blastType: 'Thunderstorm',
       burnCost: 1,
@@ -232,7 +232,7 @@ const sampleClass: DndClass = {
     },
     {
       name: 'Venom Infusion',
-      description: 'Your target takes ongoing poison damage equal to your Constitution modifier.',
+      description: 'Your blast injects toxin. The target takes ongoing poison damage equal to your Constitution modifier until it succeeds on a Fortitude save.',
       element: 'poison',
       blastType: 'Acid, Poison, Poisonmist',
       burnCost: 2,
@@ -240,7 +240,7 @@ const sampleClass: DndClass = {
     },
     {
       name: 'Honed Arrows',
-      description: 'Improve the accuracy of a ranged attack from your kinetic blast or kinetic blade.',
+      description: 'Improve the accuracy of a ranged attack. Your blast gains a precision bonus and can ignore the first 5 feet of cover.',
       element: 'force',
       blastType: 'Any',
       burnCost: 1,
@@ -248,7 +248,7 @@ const sampleClass: DndClass = {
     },
     {
       name: 'Rare-Metal Infusion',
-      description: 'Infuse your attack to ignore resistances or improve the damage of certain weapon attacks.',
+      description: 'Your blast becomes capable of piercing resistant materials. It can ignore resistance to nonmagical attacks and damage creatures as if your attack were made of rare metal.',
       element: 'force',
       blastType: 'Any',
       burnCost: 1,
@@ -256,15 +256,39 @@ const sampleClass: DndClass = {
     },
     {
       name: 'Rending Arrows',
-      description: 'Your blast-imbued arrow strikes with extra cutting power, ignoring some resistances.',
+      description: 'Your blast-imbued arrow tears through armor. The target takes extra damage and may suffer additional bleeding effects.',
       element: 'force',
       blastType: 'Any',
       burnCost: 1,
       minLevel: 3,
     },
     {
+      name: 'Searing Infusion',
+      description: 'Your blast sears flesh and armor. On a failed Reflex save, the target takes extra fire damage and suffers ongoing burning damage equal to your Constitution modifier.',
+      element: 'fire',
+      blastType: 'Fire, Plasma',
+      burnCost: 1,
+      minLevel: 3,
+    },
+    {
+      name: 'Freezing Infusion',
+      description: 'Your blast freezes the target. A failed Fortitude save slows the creature and may reduce its movement until the end of your next turn.',
+      element: 'ice',
+      blastType: 'Ice, Blizzard',
+      burnCost: 1,
+      minLevel: 3,
+    },
+    {
+      name: 'Stunning Infusion',
+      description: 'Your blast rattles the target with kinetic force. A failed Will save stuns the creature until the end of its next turn.',
+      element: 'thunder',
+      blastType: 'Thunderstorm, Air',
+      burnCost: 2,
+      minLevel: 5,
+    },
+    {
       name: 'Chain Arrows',
-      description: 'Your hit blast can jump to nearby creatures, chaining additional targets for half damage.',
+      description: 'Your hit blast jumps to a second creature within range, dealing half damage to that secondary target.',
       element: 'universal',
       blastType: 'Unaltered blasts',
       burnCost: 3,
@@ -272,7 +296,7 @@ const sampleClass: DndClass = {
     },
     {
       name: 'Cloud',
-      description: 'Create a cloud that damages anyone who enters it or ends their turn inside it.',
+      description: 'Create a cloud of elemental energy that damages creatures inside it. Creatures that enter or end their turn there take blast damage or half as much on a successful Reflex save.',
       element: 'air',
       blastType: 'Blizzard, Poisonmist, Sandstorm, Steam, Thunderstorm',
       burnCost: 2,
@@ -282,7 +306,7 @@ const sampleClass: DndClass = {
     },
     {
       name: 'Cyclone',
-      description: 'Deal blast damage to all creatures within 20 feet; Dexterity save for half.',
+      description: 'Unleash a swirling blast that damages all creatures within 20 feet. Each creature can make a Reflex save for half damage.',
       element: 'air',
       blastType: 'Air, Blizzard, Sandstorm, Thunderstorm',
       burnCost: 2,
@@ -290,7 +314,7 @@ const sampleClass: DndClass = {
     },
     {
       name: 'Darkness Infusion',
-      description: 'Create magical darkness around a creature hit by your blast.',
+      description: 'Your blast creates a zone of magical darkness around the creature you hit, heavily obscuring the area for the duration.',
       element: 'shadow',
       blastType: 'Green flame, Shadow',
       burnCost: 2,
@@ -300,7 +324,7 @@ const sampleClass: DndClass = {
     },
     {
       name: 'Deadly Earth',
-      description: 'Infuse the ground to create a damaging difficult terrain zone.',
+      description: 'Infuse the ground with kinetic earth energy, creating dangerous terrain that harms and slows creatures inside it.',
       element: 'earth',
       blastType: 'Earth, Holyground, Magma, Metal, Mud',
       burnCost: 2,
@@ -310,7 +334,7 @@ const sampleClass: DndClass = {
     },
     {
       name: 'Detonation',
-      description: 'Explode your kinetic energy outward, damaging all creatures within 20 feet.',
+      description: 'Your blast explodes outward, damaging all creatures within 20 feet. A successful Reflex save halves the damage.',
       element: 'fire',
       blastType: 'Blue flame, Fire, Green flame, Plasma',
       burnCost: 3,
@@ -318,7 +342,7 @@ const sampleClass: DndClass = {
     },
     {
       name: 'Eruption',
-      description: 'Create a pillar of flame that deals extra damage to the target and nearby creatures.',
+      description: 'Create a pillar of flame at the target that bursts outward. The target and nearby creatures take damage, and those nearby can save for half.',
       element: 'fire',
       blastType: 'Blue flame, Fire, Green flame, Magma, Plasma, Steam',
       burnCost: 3,
@@ -327,7 +351,7 @@ const sampleClass: DndClass = {
     },
     {
       name: 'Tremor Infusion',
-      description: 'Send tremors through the ground to damage ground-based creatures.',
+      description: 'Send a seismic pulse through the ground. Grounded creatures take extra damage and may be knocked prone on a failed Reflex save.',
       element: 'earth',
       blastType: 'Earth',
       burnCost: 2,
@@ -335,7 +359,7 @@ const sampleClass: DndClass = {
     },
     {
       name: 'Blade Whirlwind',
-      description: 'Swing your kinetic blade around you in a whirlwind attack.',
+      description: 'Spin your kinetic blade around you, striking every creature adjacent to you with one attack using your Kinetic Blade damage.',
       element: 'universal',
       blastType: 'Any',
       burnCost: 2,
@@ -344,7 +368,7 @@ const sampleClass: DndClass = {
     },
     {
       name: 'Grappling Infusion',
-      description: 'Grapple a target with your blast energy and restrain it until it escapes.',
+      description: 'Your blast energy lashes a creature and restrains it. A failed Reflex save leaves the target restrained until it escapes.',
       element: 'universal',
       blastType: 'Any',
       burnCost: 2,
@@ -353,7 +377,7 @@ const sampleClass: DndClass = {
     },
     {
       name: 'Vampiric Infusion',
-      description: 'Heal for half the damage dealt by your blast.',
+      description: 'When your Kinetic Blast deals damage, you regain hit points equal to half the damage dealt, up to your Constitution modifier.',
       element: 'necrotic',
       blastType: 'Green flame, Shadow',
       burnCost: 3,
@@ -361,7 +385,7 @@ const sampleClass: DndClass = {
     },
     {
       name: 'Foxfire Infusion',
-      description: 'Mark or burn a target with fiery or radiant energy for ongoing effects.',
+      description: 'Your blast sears with radiant energy. On a failed Fortitude save, the target takes ongoing radiant damage or becomes marked for advantage on attacks from allies.',
       element: 'radiant',
       blastType: 'Fire or Radiant',
       burnCost: 1,
@@ -369,7 +393,7 @@ const sampleClass: DndClass = {
     },
     {
       name: 'Guardian Infusion',
-      description: 'Create protective energy that grants defensive benefits for you or allies.',
+      description: 'Create a protective field around yourself or an ally. The affected creature gains temporary hit points or resistance to one damage type until the start of your next turn.',
       element: 'radiant',
       blastType: 'Plasma, Radiant',
       burnCost: 2,
@@ -377,7 +401,7 @@ const sampleClass: DndClass = {
     },
     {
       name: 'Greater Venom Infusion',
-      description: 'Improve Venom Infusion to increase potency and impose disadvantage on the save.',
+      description: 'Enhance Venom Infusion so its ongoing poison damage increases and the initial save is made at disadvantage.',
       element: 'poison',
       blastType: 'Acid, Poison, Poisonmist',
       burnCost: 2,
@@ -393,12 +417,12 @@ const sampleClass: DndClass = {
       abilities: [
         {
           name: 'Shadow Weaver',
-          description: 'Your kinetic gate taps the Plane of Shadow. You specialize in hit-and-run tactics, draining life and slashing from darkness.\n\nKinetic Blast Upgrades: Deals slashing or necrotic damage (choose per attack). Range: 60 ft ranged / 5 ft melee\n\nShadow Veil: You gain proficiency in Stealth (or expertise if already proficient). While in dim light or darkness, you can Hide as a bonus action if you have cover or are lightly obscured, and you have advantage on Dexterity (Stealth) checks in those conditions.',
+          description: 'Your kinetic gate taps the Plane of Shadow. You specialize in hit-and-run tactics, draining life and slashing from darkness.\n\nKinetic Blast Upgrades: Deals slashing or necrotic damage (choose per attack). Range: 60 ft ranged / 5 ft melee.\n\nShadow Veil: You gain proficiency in Stealth (or expertise if already proficient). While in dim light or darkness, you can Hide as a bonus action if you have cover or are lightly obscured, and you have advantage on Dexterity (Stealth) checks in those conditions.',
           minLevel: 3,
         },
         {
           name: 'Weave the Darkness',
-          description: 'Bonus Action, accept 1 Burn: Swirling shadows cloak you until the start of your next turn:\n• You gain resistance to necrotic damage and to bludgeoning, piercing, and slashing from nonmagical attacks.\n• Opportunity attacks against you have disadvantage.\n• Your movement doesn\'t provoke opportunity attacks from creatures that you hit with your Kinetic Blast attack.',
+          description: 'Bonus Action, accept 1 Burn: Swirling shadows cloak you until the start of your next turn.\n• You gain resistance to necrotic damage and to bludgeoning, piercing, and slashing from nonmagical attacks.\n• Opportunity attacks against you have disadvantage.\n• Your movement doesn\'t provoke opportunity attacks from creatures that you hit with your Kinetic Blast attack.',
           minLevel: 3,
         },
         {
@@ -413,7 +437,71 @@ const sampleClass: DndClass = {
         },
         {
           name: 'Umbral Sovereign',
-          description: 'You have become a true sovereign of the Plane of Shadow. Shadows bend to your will as naturally as breathing.\n\nPassive Benefit: You are always treated as being in dim light or darkness for the purposes of every Shadow Weaver feature (even in bright light). Harmless wisps of shadow constantly swirl around you in a 10-foot radius.\n\nUmbral Sovereign (Action, accept 3 Burn): Enter a state of Umbral Sovereignty for 1 minute (once per long rest). You can recharge this use at any time by accepting 6 points of burn (no action required).\n\nWhile in Umbral Sovereignty, you gain the following:\n• You are invisible while in dim light or darkness.\n• You can use Shadow Teleport as a bonus action with no burn cost and at double range (120 feet). You can make an opportunity creature of your size or smaller you pass through.',
+          description: 'You have become a true sovereign of the Plane of Shadow. Shadows bend to your will as naturally as breathing.\n\nPassive Benefit: You are always treated as being in dim light or darkness for the purposes of every Shadow Weaver feature (even in bright light). Harmless wisps of shadow constantly swirl around you in a 10-foot radius.\n\nUmbral Sovereign (Action, accept 3 Burn): Enter a state of Umbral Sovereignty for 1 minute (once per long rest). You can recharge this use at any time by accepting 6 points of burn (no action required).\n\nWhile in Umbral Sovereignty, you gain the following:\n• You are invisible while in dim light or darkness.\n• You can use Shadow Teleport as a bonus action with no burn cost and at double range (120 feet). You can move through creatures of your size or smaller without provoking opportunity attacks.',
+          minLevel: 15,
+        },
+      ],
+    },
+    {
+      id: 'light_bearer_001',
+      name: 'Light Bearer',
+      description: 'Your kinetic gate is keyed to radiant energy. You wield dazzling light and protective flame to burn through darkness, shield allies, and strike with divine fury.',
+      abilities: [
+        {
+          name: 'Light Bearer',
+          description: 'Your kinetic gate channels radiant power. Your Kinetic Blast can deal radiant or fire damage, and your attacks shed bright light in a 15-foot radius. You can use your radiance to dispel darkness and apply additional effects against fiends, undead, or creatures vulnerable to light.',
+          minLevel: 3,
+        },
+        {
+          name: 'Radiant Ward',
+          description: 'Bonus Action, accept 1 Burn: You or an ally within 30 feet gains resistance 5 to fire and necrotic damage until the start of your next turn. If the protected creature is hit by an attack, it also gains temporary hit points equal to your Constitution modifier.',
+          minLevel: 3,
+        },
+        {
+          name: 'Blinding Radiance',
+          description: 'When you hit a creature with a Radiant Kinetic Blast, it must make a Will save or become dazzled until the end of its next turn. You may also accept 1 additional burn to cause the target to take ongoing radiant damage equal to your proficiency bonus.',
+          minLevel: 7,
+        },
+        {
+          name: 'Sunburst Strike',
+          description: 'Once per turn when you hit with a Radiant Kinetic Blast, you may accept 2 burn to increase the blast\'s damage die by one step and force all creatures within 5 feet of the target to make a Reflex save or be blinded until the end of their next turn.',
+          minLevel: 10,
+        },
+        {
+          name: 'Solar Sovereign',
+          description: 'Once per long rest, action + 3 Burn to radiate bright light in a 30-foot radius for 1 minute. Allies in the area gain temporary hit points equal to your Constitution modifier at the start of their turns, and fiends or undead that start their turn in the radius take radiant damage equal to your Constitution modifier.',
+          minLevel: 15,
+        },
+      ],
+    },
+    {
+      id: 'natures_wrath_001',
+      name: 'Nature\'s Wrath',
+      description: 'Your kinetic gate channels the fury of the wild. You send thorned vines, living stones, and primal storms into battle, letting nature itself punish your foes.',
+      abilities: [
+        {
+          name: 'Nature\'s Wrath',
+          description: 'Your kinetic gate draws power from plant life, earth, and storm energy. Your Kinetic Blast can deal acid, poison, or earth damage and interacts with terrain and vegetation to slow, snare, or batter enemies.',
+          minLevel: 3,
+        },
+        {
+          name: 'Wrathful Growth',
+          description: 'Bonus Action, accept 1 Burn: Choose a 10-foot area within 30 feet. Creatures that enter or end their turn in that area take acid or piercing damage equal to your Constitution modifier and must succeed on a Reflex save or be slowed until the start of your next turn.',
+          minLevel: 3,
+        },
+        {
+          name: 'Thorned Assault',
+          description: 'When you hit a creature with a Kinetic Blast, you may accept 1 burn to force it to make a Reflex save or become restrained by natural growth until the end of your next turn.',
+          minLevel: 7,
+        },
+        {
+          name: 'Primal Surge',
+          description: 'Once per round when you use a Kinetic Blast, you may accept 2 burn to cause it to burst. Creatures within 10 feet of the target take half the blast damage and must make a Reflex save for half.',
+          minLevel: 10,
+        },
+        {
+          name: 'Avatar of the Wild',
+          description: 'Once per long rest, action + 5 Burn to become an avatar of wild nature for 1 minute. You gain resistance 5 to poison and acid, ignore natural difficult terrain, and when a creature within 10 feet hits you with a melee attack, it takes piercing damage equal to your Constitution modifier.',
           minLevel: 15,
         },
       ],
