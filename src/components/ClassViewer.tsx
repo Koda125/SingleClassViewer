@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Attributes, DndClass, InfusionElement } from '../types/index';
+import { Attributes, DndClass, InfusionElement, InfusionType } from '../types/index';
 import { DiceRoller, RecentRoll } from './DiceRoller';
 import './ClassViewer.css';
 
@@ -8,8 +8,9 @@ interface ClassViewerProps {
 }
 
 export const ClassViewer: React.FC<ClassViewerProps> = ({ dndClass }) => {
-  const [playerLevel, setPlayerLevel] = useState(1);
+  const [playerLevel, setPlayerLevel] = useState(2);
   const [selectedElements, setSelectedElements] = useState<InfusionElement[]>([]);
+  const [selectedInfusionType, setSelectedInfusionType] = useState<InfusionType | 'all'>('all');
   const [primaryAttribute, setPrimaryAttribute] = useState<keyof DndClass['attributes']>(dndClass.primaryAttribute);
   const [attributes, setAttributes] = useState<Attributes>(dndClass.attributes);
   const [selectedSubclassId, setSelectedSubclassId] = useState<string | null>(
@@ -177,6 +178,13 @@ export const ClassViewer: React.FC<ClassViewerProps> = ({ dndClass }) => {
 
     return levelMatch && elementMatch;
   }) || [];
+
+  const availableAttackInfusions = availableInfusions.filter(infusion =>
+    infusion.type === 'blast' && (selectedInfusionType === 'all' || selectedInfusionType === 'blast')
+  );
+  const availableUtilityInfusions = availableInfusions.filter(infusion =>
+    infusion.type === 'utility' && (selectedInfusionType === 'all' || selectedInfusionType === 'utility')
+  );
 
   const allElements: InfusionElement[] = [
     'fire', 'ice', 'lightning', 'acid', 'poison',
@@ -358,6 +366,18 @@ export const ClassViewer: React.FC<ClassViewerProps> = ({ dndClass }) => {
                     <div className="attribute-name">
                       {attr.charAt(0).toUpperCase() + attr.slice(1)}
                     </div>
+                    <div className="infusion-type-filter">
+                      <label htmlFor="infusion-type">Type:</label>
+                      <select
+                        id="infusion-type"
+                        value={selectedInfusionType}
+                        onChange={e => setSelectedInfusionType(e.target.value as InfusionType | 'all')}
+                      >
+                        <option value="all">All</option>
+                        <option value="blast">Blast</option>
+                        <option value="utility">Utility</option>
+                      </select>
+                    </div>
                     <input
                       type="number"
                       min={1}
@@ -522,10 +542,10 @@ export const ClassViewer: React.FC<ClassViewerProps> = ({ dndClass }) => {
               </div>
             )}
 
-            {dndClass.infusions && dndClass.infusions.length > 0 && (
+            {dndClass.infusions && dndClass.infusions.length > 0 && selectedInfusionType !== 'utility' && (
               <div className="infusions-section" id="infusions" style={{ display: activeSection === 'all' || activeSection === 'infusions' ? undefined : 'none' }}>
                 <div className="infusions-header">
-                  <h2>Infusions</h2>
+                  <h2>Infusions Attack</h2>
                   <div className="filters-container">
                     <div className="level-filter">
                       <label htmlFor="infusion-level">Character Level:</label>
@@ -568,8 +588,8 @@ export const ClassViewer: React.FC<ClassViewerProps> = ({ dndClass }) => {
                   </div>
                 </div>
                 <div className="infusions-list">
-                  {availableInfusions.length > 0 ? (
-                    availableInfusions.map((infusion, index) => (
+                  {availableAttackInfusions.length > 0 ? (
+                    availableAttackInfusions.map((infusion, index) => (
                       <div key={index} className="infusion-card">
                         <div className="infusion-header">
                           <h3>{infusion.name}</h3>
@@ -613,6 +633,54 @@ export const ClassViewer: React.FC<ClassViewerProps> = ({ dndClass }) => {
                       {selectedElements.length > 0 && ` with selected elements`}
                     </div>
                   )}
+                </div>
+              </div>
+            )}
+
+            {dndClass.infusions && availableUtilityInfusions.length > 0 && (
+              <div className="infusions-section" id="infusions-utility" style={{ display: activeSection === 'all' || activeSection === 'infusions' ? undefined : 'none' }}>
+                <div className="infusions-header">
+                  <h2>Infusions Utility</h2>
+                </div>
+                <div className="infusions-list">
+                  {availableUtilityInfusions.map((infusion, index) => (
+                    <div key={index} className="infusion-card">
+                      <div className="infusion-header">
+                        <h3>{infusion.name}</h3>
+                        <div className="infusion-meta">
+                          <span
+                            className="infusion-element"
+                            style={{ backgroundColor: getElementColor(infusion.element) }}
+                          >
+                            {infusion.element.charAt(0).toUpperCase() + infusion.element.slice(1)}
+                          </span>
+                          <span className="infusion-level">
+                            Level {infusion.minLevel}
+                            {infusion.maxLevel && infusion.maxLevel < 20 ? `-${infusion.maxLevel}` : ''}
+                          </span>
+                        </div>
+                      </div>
+                      <p className="infusion-description">{infusion.description}</p>
+                      <div className="infusion-burn-cost">
+                        <strong>Burn Cost:</strong> {infusion.burnCost}
+                      </div>
+                      {infusion.blastType && (
+                        <div className="infusion-blast-type">
+                          <strong>Blast Type:</strong> {infusion.blastType}
+                        </div>
+                      )}
+                      {infusion.prerequisites && (
+                        <div className="infusion-prerequisites">
+                          <strong>Prerequisites:</strong> {infusion.prerequisites}
+                        </div>
+                      )}
+                      {infusion.duration && (
+                        <div className="infusion-duration">
+                          <strong>Duration:</strong> {infusion.duration}
+                        </div>
+                      )}
+                    </div>
+                  ))}
                 </div>
               </div>
             )}

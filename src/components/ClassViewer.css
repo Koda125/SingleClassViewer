@@ -781,6 +781,11 @@
   margin: 8px 0 0 0;
   color: #333;
   line-height: 1.5;
+  max-height: 12em;
+  overflow-y: auto;
+  padding-right: 6px;
+  white-space: pre-line;
+  scrollbar-gutter: stable;
 }
 
 .infusion-burn-cost {

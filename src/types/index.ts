@@ -18,6 +18,7 @@ export interface Ability {
 export interface Infusion {
   name: string;
   description: string;
+  type?: InfusionType;
   element: InfusionElement;
   blastType?: string;
   burnCost: number;
@@ -26,6 +27,8 @@ export interface Infusion {
   prerequisites?: string;
   duration?: string;
 }
+
+export type InfusionType = 'blast' | 'utility';
 
 export type InfusionElement =
   | 'fire'
