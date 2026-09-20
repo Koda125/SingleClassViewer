@@ -740,6 +740,12 @@
   border-radius: 4px;
 }
 
+.infusion-card.selected {
+  background: #f0f4ff;
+  border-left-color: #2ecc71;
+  box-shadow: 0 0 0 1px rgba(46, 204, 113, 0.25);
+}
+
 .infusion-header {
   display: flex;
   justify-content: space-between;
@@ -757,6 +763,24 @@
   display: flex;
   gap: 8px;
   align-items: center;
+  flex-wrap: wrap;
+}
+
+.infusion-select-btn {
+  padding: 4px 8px;
+  border: 1px solid #667eea;
+  border-radius: 4px;
+  background: white;
+  color: #667eea;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.infusion-select-btn:hover,
+.infusion-select-btn.selected {
+  background: #667eea;
+  color: white;
 }
 
 .infusion-element {

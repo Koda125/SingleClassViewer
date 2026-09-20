@@ -8,9 +8,23 @@ interface ClassViewerProps {
 }
 
 export const ClassViewer: React.FC<ClassViewerProps> = ({ dndClass }) => {
-  const [playerLevel, setPlayerLevel] = useState(2);
+  const [playerLevel, setPlayerLevel] = useState(5);
   const [selectedElements, setSelectedElements] = useState<InfusionElement[]>([]);
   const [selectedInfusionType, setSelectedInfusionType] = useState<InfusionType | 'all'>('all');
+  const [selectedAttackInfusions, setSelectedAttackInfusions] = useState<string[]>([
+    'Extended Range',
+    'Kinetic Blade',
+    'Dampening Infusion',
+    'Elemental Trap',
+    'Focused Blast',
+    'Spindle'
+  ]);
+  const [selectedUtilityInfusions, setSelectedUtilityInfusions] = useState<string[]>([
+    'Basic Umbrakinesis',
+    'Elemental Whispers',
+    'Eyes of the Void',
+    'Skilled Kineticist'
+  ]);
   const [primaryAttribute, setPrimaryAttribute] = useState<keyof DndClass['attributes']>(dndClass.primaryAttribute);
   const [attributes, setAttributes] = useState<Attributes>(dndClass.attributes);
   const [selectedSubclassId, setSelectedSubclassId] = useState<string | null>(
@@ -182,9 +196,21 @@ export const ClassViewer: React.FC<ClassViewerProps> = ({ dndClass }) => {
   const availableAttackInfusions = availableInfusions.filter(infusion =>
     infusion.type === 'blast' && (selectedInfusionType === 'all' || selectedInfusionType === 'blast')
   );
+  const sortedAttackInfusions = [...availableAttackInfusions].sort((first, second) => {
+    const firstSelected = selectedAttackInfusions.includes(first.name);
+    const secondSelected = selectedAttackInfusions.includes(second.name);
+
+    return Number(secondSelected) - Number(firstSelected);
+  });
   const availableUtilityInfusions = availableInfusions.filter(infusion =>
     infusion.type === 'utility' && (selectedInfusionType === 'all' || selectedInfusionType === 'utility')
   );
+  const sortedUtilityInfusions = [...availableUtilityInfusions].sort((first, second) => {
+    const firstSelected = selectedUtilityInfusions.includes(first.name);
+    const secondSelected = selectedUtilityInfusions.includes(second.name);
+
+    return Number(secondSelected) - Number(firstSelected);
+  });
 
   const allElements: InfusionElement[] = [
     'fire', 'ice', 'lightning', 'acid', 'poison',
@@ -197,6 +223,22 @@ export const ClassViewer: React.FC<ClassViewerProps> = ({ dndClass }) => {
       prev.includes(element)
         ? prev.filter(e => e !== element)
         : [...prev, element]
+    );
+  };
+
+  const toggleAttackInfusion = (infusionName: string) => {
+    setSelectedAttackInfusions(prev =>
+      prev.includes(infusionName)
+        ? prev.filter(name => name !== infusionName)
+        : [...prev, infusionName]
+    );
+  };
+
+  const toggleUtilityInfusion = (infusionName: string) => {
+    setSelectedUtilityInfusions(prev =>
+      prev.includes(infusionName)
+        ? prev.filter(name => name !== infusionName)
+        : [...prev, infusionName]
     );
   };
 
@@ -588,9 +630,12 @@ export const ClassViewer: React.FC<ClassViewerProps> = ({ dndClass }) => {
                   </div>
                 </div>
                 <div className="infusions-list">
-                  {availableAttackInfusions.length > 0 ? (
-                    availableAttackInfusions.map((infusion, index) => (
-                      <div key={index} className="infusion-card">
+                  {sortedAttackInfusions.length > 0 ? (
+                    sortedAttackInfusions.map(infusion => {
+                      const isSelected = selectedAttackInfusions.includes(infusion.name);
+
+                      return (
+                      <div key={infusion.name} className={`infusion-card ${isSelected ? 'selected' : ''}`}>
                         <div className="infusion-header">
                           <h3>{infusion.name}</h3>
                           <div className="infusion-meta">
@@ -604,6 +649,14 @@ export const ClassViewer: React.FC<ClassViewerProps> = ({ dndClass }) => {
                               Level {infusion.minLevel}
                               {infusion.maxLevel && infusion.maxLevel < 20 ? `-${infusion.maxLevel}` : ''}
                             </span>
+                            <button
+                              type="button"
+                              className={`infusion-select-btn ${isSelected ? 'selected' : ''}`}
+                              onClick={() => toggleAttackInfusion(infusion.name)}
+                              aria-pressed={isSelected}
+                            >
+                              {isSelected ? 'Selected' : 'Select'}
+                            </button>
                           </div>
                         </div>
                         <p className="infusion-description">{infusion.description}</p>
@@ -626,7 +679,8 @@ export const ClassViewer: React.FC<ClassViewerProps> = ({ dndClass }) => {
                           </div>
                         )}
                       </div>
-                    ))
+                      );
+                    })
                   ) : (
                     <div className="no-infusions">
                       No infusions available at level {playerLevel}
@@ -643,8 +697,11 @@ export const ClassViewer: React.FC<ClassViewerProps> = ({ dndClass }) => {
                   <h2>Infusions Utility</h2>
                 </div>
                 <div className="infusions-list">
-                  {availableUtilityInfusions.map((infusion, index) => (
-                    <div key={index} className="infusion-card">
+                  {sortedUtilityInfusions.map(infusion => {
+                    const isSelected = selectedUtilityInfusions.includes(infusion.name);
+
+                    return (
+                    <div key={infusion.name} className={`infusion-card ${isSelected ? 'selected' : ''}`}>
                       <div className="infusion-header">
                         <h3>{infusion.name}</h3>
                         <div className="infusion-meta">
@@ -658,6 +715,14 @@ export const ClassViewer: React.FC<ClassViewerProps> = ({ dndClass }) => {
                             Level {infusion.minLevel}
                             {infusion.maxLevel && infusion.maxLevel < 20 ? `-${infusion.maxLevel}` : ''}
                           </span>
+                          <button
+                            type="button"
+                            className={`infusion-select-btn ${isSelected ? 'selected' : ''}`}
+                            onClick={() => toggleUtilityInfusion(infusion.name)}
+                            aria-pressed={isSelected}
+                          >
+                            {isSelected ? 'Selected' : 'Select'}
+                          </button>
                         </div>
                       </div>
                       <p className="infusion-description">{infusion.description}</p>
@@ -680,7 +745,8 @@ export const ClassViewer: React.FC<ClassViewerProps> = ({ dndClass }) => {
                         </div>
                       )}
                     </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             )}
